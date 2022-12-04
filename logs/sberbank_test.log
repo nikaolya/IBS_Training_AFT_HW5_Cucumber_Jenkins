@@ -1,0 +1,11 @@
+1657 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Using chromedriver 107.0.5304.62 (resolved driver for Chrome 107)
+1695 [main] INFO  i.g.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\Dominika\.cache\selenium\chromedriver\win32\107.0.5304.62\chromedriver.exe
+4676 [main] INFO  r.c.f.s.StartPageSteps - Открываем стартовую страницу сбербанк
+7784 [main] INFO  r.c.f.s.StartPageSteps - Переходим в раздел Ипотека
+12324 [main] INFO  r.c.f.s.StartPageSteps - Переходим в раздел Ипотека на вторичное жильё
+15563 [main] INFO  r.c.f.s.SecondaryHousingMortgageSteps - Скроллим страницу до раздела Рассчитайте ипотеку
+18291 [main] INFO  r.c.f.s.SecondaryHousingMortgageSteps - Заполняем поля значениями
+21766 [main] INFO  r.c.f.s.SecondaryHousingMortgageSteps - Убираем/ставим галочку Страхование жизни и здоровья
+22138 [main] INFO  r.c.f.s.SecondaryHousingMortgageSteps - Скроллим страницу до раздела Рассчитайте ипотеку
+24703 [main] INFO  r.c.f.s.SecondaryHousingMortgageSteps - Проверяем правильность расчета условий по ипотеке
+25655 [main] INFO  r.c.framework.stepDefinitions.Hooks - Сохраняем скриншот страницы
