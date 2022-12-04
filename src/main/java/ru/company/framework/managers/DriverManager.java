@@ -1,10 +1,18 @@
 package ru.company.framework.managers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import ru.company.framework.utils.ConstProp;
+
+import java.net.MalformedURLException;
+import java.net.URI;
 
 public class DriverManager {
 	private WebDriver driver;
@@ -36,11 +44,37 @@ public class DriverManager {
 	}
 
 	private void initDriver() {
-		if (props.getProperty(ConstProp.BROWSER).equals("chrome")){
-			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("start-maximized");
-			driver = new ChromeDriver(options);
+		switch (props.getProperty(ConstProp.BROWSER)) {
+			case "firefox":
+				WebDriverManager.firefoxdriver().setup();
+				driver = new FirefoxDriver();
+				driver.manage().window().maximize();
+				break;
+			case "chrome":
+				WebDriverManager.chromedriver().setup();
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("start-maximized");
+				options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				options.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+				driver = new ChromeDriver(options);
+				break;
+			case "remote": // todo проверить Selenoid url
+				DesiredCapabilities capabilities = new DesiredCapabilities();
+				capabilities.setBrowserName("chrome");
+				capabilities.setVersion("84.0");
+				capabilities.setCapability("enableVNC", true);
+				capabilities.setCapability("enableVideo", false);
+				try {
+					driver = new RemoteWebDriver(
+							URI.create("http://130.193.49.85:4444/wd/hub").toURL(),
+							capabilities
+					);
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+				break;
+			default:
+				Assertions.fail(String.format("Типа браузера %s не существует во фреймворке", props.getProperty(ConstProp.BROWSER)));
 		}
 	}
 }

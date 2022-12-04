@@ -16,17 +16,17 @@ public class SecondaryHousingMortgagePage extends BasePage {
 	@FindBy(xpath = "//iframe[@id='iFrameResizer0']")
 	private WebElement frameInput;
 
-	@FindBy(xpath = "//input[contains(@class, 'dc-input__input')]")
+	@FindBy(xpath = "//input[contains(@class, 'inpt-root__input')]")
 	private List<WebElement> inputFieldList;
 
-	@FindBy(xpath = "//div[@data-e2e-id='mland-calculator/collapsible-discount-true']")
+	@FindBy(xpath = "//div[contains(text(), 'Услуги, снижающие ставку по кредиту')]/../div/div")
 	private List<WebElement> checkboxList;
 
 	@FindBy(xpath = "//span[contains(text(), 'Необходимый доход')]")
 	private WebElement requiredIncome;
 
 	private final String INPUT_FIELD_LABEL_NESTED_XPATH = "./../label";
-	private final String CHECKBOX_TITLE_NESTED_XPATH = "./div/div/span";
+	private final String CHECKBOX_TITLE_NESTED_XPATH = "./div/span[not(@class)]";
 	private final String CHECKBOX_NESTED_XPATH = ".//input[@type = 'checkbox']";
 	private final String MAIN_RESULTS_TITLE_XPATH = "//div[@data-test-id='main-results-block']//li//span[contains(text(), '%s')]";
 	private final String MAIN_RESULTS_VALUE_NESTED_XPATH = "./../div/span/span";
